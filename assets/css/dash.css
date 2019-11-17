@@ -1,0 +1,99 @@
+#dash-name p {
+    margin-bottom: 0;
+}
+
+#sec-users {
+    margin-top: 30px;
+}
+
+.users-fundo {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.users-fundo ul {
+    margin-left: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.users-item {
+    background-color: #f8f9fa;
+    padding: 20px 10px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.users-item li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.users-perfil {
+    margin-bottom: 0;
+    align-self: flex-end;
+    font-size: 14px;
+}
+
+.users-name {
+    margin-bottom: 0;
+    align-self: center;
+    font-size: 18px;
+    font-weight: 650;
+}
+
+.users-link {
+    color: #747474;
+}
+
+.users-link:hover {
+    color: #747474;
+    text-decoration: none;
+}
+
+#sec-user {
+    margin-top: 30px;
+}
+
+.users-infos {
+    background-color: aqua;
+    width: 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.users-infos h4 {
+    margin-bottom: 0;
+}
+
+.list-btns {
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.btn-user {
+    width: 50%;
+    padding: 5px;
+    border-color: transparent;
+}
+
+.btn-user:hover {
+    background-color: #656565;
+    border-color: #656565;
+    cursor: pointer;
+}
+
+#sec-alterar {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

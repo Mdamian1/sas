@@ -1,0 +1,24 @@
+Cadastro de horários:
+    O sistema deverá mostrar uma lista de horários e dias.
+        Então o administrador deverá selecionar os horários e dias (dias da semana, exemplo: Segunda, terça...) em que poderá ocorrer os agendamentos;
+        Após isso os horários e dias serão salvos no banco de dados;
+        
+Agendamento:
+    O sistema deverá mostrar os horários especificados pelo administrador:
+        Então o cliente deverá preencher um formulário com:
+            O horário desejado;
+            O que ele precisa que seja feito no serviço;
+            
+Cadastro de cliente:
+    O sistema deverá mostrar um formulário:
+        Então o usuário deverá preencher os dados e cadastrar;
+        Todo usuário deverá ser cadastrado como "Cliente";
+    Se for funcionário:
+        Então ele deverá escolher o perfil do cadastro entre:
+            Funcionário;
+            Cliente;
+        
+Cadastro de funcionário:
+    O sistema deverá mostrar um formulário para o administrador:
+        Então o administrador deverá preencher os dados e cadastrar;
+        Cadastrar como funcionário:

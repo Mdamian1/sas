@@ -1,0 +1,33 @@
+.login-fundo {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-fundo-form {
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 10px 37px -25px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 10px 37px -25px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 10px 37px -25px rgba(0, 0, 0, 0.75);
+}
+
+.login-fundo-form form {
+    padding: 20px;
+    width: 100%;
+}
+
+#btn-login {
+    width: 100%;
+}
+
+#alerta-erro {
+    display: none;
+    font-size: 14px;
+}
