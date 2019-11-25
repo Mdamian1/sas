@@ -18,7 +18,11 @@ class Query extends CI_Model {
             'cpf' => $cpf
         );
 
-        $this->db->insert('pessoa', $data);
+        if ( $this->db->insert('pessoa', $data) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function setEndereco($id_estado, $rua, $numero, $complemento, $bairro, $cidade, $cep) {
@@ -32,7 +36,11 @@ class Query extends CI_Model {
             'cep' => $cep
         );
 
-        $this->db->insert('endereco', $data);
+        if ( $this->db->insert('endereco', $data) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function setTelefone($id_pessoa, $numero) {
@@ -41,7 +49,11 @@ class Query extends CI_Model {
             'numero' => $numero
         );
 
-        $this->db->insert('telefone', $data);
+        if ( $this->db->insert('telefone', $data) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function setPerfil($descricao) {
@@ -49,7 +61,11 @@ class Query extends CI_Model {
             'descricao' => $descricao
         );
 
-        $this->db->insert('perfil', $data);
+        if ( $this->db->insert('perfil', $data) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function setLogin($usuario, $senha) {
@@ -58,7 +74,11 @@ class Query extends CI_Model {
             'senha' => sha1($senha)
         );
 
-        $this->db->insert('login', $data);
+        if ( $this->db->insert('login', $data) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function setEstado($nome, $sigla) {
@@ -67,7 +87,11 @@ class Query extends CI_Model {
             'sigla' => $sigla
         );
 
-        $this->db->insert('login', $data);
+        if ( $this->db->insert('login', $data) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function setHorarioDisponivel($horario) {
@@ -75,7 +99,11 @@ class Query extends CI_Model {
             'horario' => $horario
         );
 
-        $this->db->insert('horario_disponivel', $data);
+        if ( $this->db->insert('horario_disponivel', $data) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function setAgendamento($id_horario, $id_pessoa, $descricao) {
@@ -85,7 +113,11 @@ class Query extends CI_Model {
             'descricao' => $descricao
         );
 
-        $this->db->insert('agendamento', $data);
+        if ( $this->db->insert('agendamento', $data) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
 /* --------------------- */
@@ -275,13 +307,12 @@ class Query extends CI_Model {
         return $query->result_array();
     }
     
-    public function getLoginPessoa($usuario, $senha) {
+    public function getLoginPessoa($usuario) {
         $this->db->select('login.id_login');
         $this->db->select('login.usuario');
         $this->db->select('login.senha');
         $this->db->from('login');
         $this->db->where('login.usuario', $usuario);
-        $this->db->where('login.senha', $senha);
         $query = $this->db->get();
         
         return $query->result_array();

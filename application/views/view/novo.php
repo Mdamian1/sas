@@ -104,7 +104,7 @@
                             <option value="0">Selecione um perfil</option>
                             <?php
                             foreach($perfis as $perfil){
-                                echo "<option value'".$perfil['id_perfil']."'>".$perfil['descricao']."</option>";
+                                echo "<option value='".$perfil['id_perfil']."'>".$perfil['descricao']."</option>";
                             } 
                             ?>
                         </select>

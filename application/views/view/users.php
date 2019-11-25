@@ -7,8 +7,8 @@
                     <div class="users-item">
                         <?php
                         for($i=0; $i<count($perfil);$i++) {
-                            if ($perfil[0]['id_perfil'] == $user['id_perfil']) {
-                                $userPerfil = $perfil[0]['descricao'];
+                            if ($perfil[$i]['id_perfil'] == $user['id_perfil']) {
+                                $userPerfil = $perfil[$i]['descricao'];
                             }
                         }
                         ?>

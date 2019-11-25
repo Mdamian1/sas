@@ -82,34 +82,42 @@ class Admin extends CI_Controller {
         $senha = $this->input->post('senha');
         $confirmarSenha = $this->input->post('confirmar-senha');
         $id_perfil = $this->input->post('perfil');
-        
+        $k = 0;
         if ( $senha == $confirmarSenha ) {
+            
             $senha = sha1($senha);
             if ( $this->query->setLogin($usuario, $senha) ) {
-                echo json_encode('Login cadastrado com sucesso');
-                $dados['login'] = $this->query->getLoginPessoa($usuario, $senha);
+                
+                $k++;
+                
+                $login = $this->query->getLoginPessoa($usuario);
+                
                 if ( $this->query->setEndereco($id_estado, $rua, $numero, $complemento, $bairro, $cidade, $cep) ) {
-                    echo json_encode('Endereço cadastrado com sucesso');
-                    $dados['endereco'] = $this->query->getEnderecoPessoa($id_estado, $rua, $numero, $complemento, $bairro, $cidade, $cep);
-                    if ( $this->query->setPessoa($id_perfil, $dados['endereco'][0]['id_endereco'], $dados['login'][0]['id_login'], $nome, $sobrenome, $dataNasc, $email, $cpf) ) {
-                        echo json_encode('Pessoa cadastrada com sucesso');
-                        $dados['pessoa'] = $this->query->getPessoaCadastro($id_perfil, $dados['endereco'][0]['id_endereco'], $dados['login'][0]['id_login'], $nome, $sobrenome, $dataNasc, $email, $cpf);
-                        if ( $this->query->setTelefone($dados['pessoa'][0]['id_pessoa'], $celular) ) {
-                            echo json_encode('Telefone cadastrado com sucesso');
-                        } else {
-                            echo json_encode('Falha ao cadastrar telefone');
+                    
+                    $k++;
+                    
+                    $endereco = $this->query->getEnderecoPessoa($id_estado, $rua, $numero, $complemento, $bairro, $cidade, $cep);
+
+                    if ( $this->query->setPessoa($id_perfil, $endereco[0]['id_endereco'], $login[0]['id_login'], $nome, $sobrenome, $dataNasc, $email, $cpf) ) {
+                        
+                        $k++;
+                        
+                        $pessoa = $this->query->getPessoaCadastro($id_perfil, $endereco[0]['id_endereco'], $login[0]['id_login'], $nome, $sobrenome, $dataNasc, $email, $cpf);
+
+                        if ( $this->query->setTelefone($pessoa[0]['id_pessoa'], $celular) ) {
+                        
+                            $k++;
+                        
                         }
-                    } else {
-                        echo json_encode('Falha ao cadastrar pessoa');
                     }
-                } else {
-                    echo json_encode('Falha ao cadastrar endereço');
                 }
-            } else {
-                echo json_encode('Falha ao cadastrar login');
             }
+        }
+        
+        if ( $k == 4 ) {
+            echo json_encode('Pessoa cadastrada com sucesso');
         } else {
-            echo json_encode('Senhas não conferem');
+            echo json_encode('Falha ao cadastrar pessoa');
         }
     }
 
