@@ -110,7 +110,7 @@
                     </div>
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Entrar</button>
+                <button type="submit" class="btn btn-dark">Entrar</button>
             </form>
         </div>
     </div>

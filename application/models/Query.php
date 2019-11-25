@@ -131,6 +131,30 @@ class Query extends CI_Model {
         return $query->result_array();
     }
     
+    public function getPessoaCadastro($id_perfil, $id_endereco, $id_login, $nome, $sobrenome, $data_nasc, $email, $cpf) {
+        $this->db->select('pessoa.id_pessoa');
+        $this->db->select('pessoa.id_perfil');
+        $this->db->select('pessoa.id_endereco');
+        $this->db->select('pessoa.id_login');
+        $this->db->select('pessoa.nome');
+        $this->db->select('pessoa.sobrenome');
+        $this->db->select('pessoa.data_nasc');
+        $this->db->select('pessoa.email');
+        $this->db->select('pessoa.cpf');
+        $this->db->from('pessoa');
+        $this->db->where('pessoa.id_perfil', $id_perfil);
+        $this->db->where('pessoa.id_endereco', $id_endereco);
+        $this->db->where('pessoa.id_login', $id_login);
+        $this->db->where('pessoa.nome', $nome);
+        $this->db->where('pessoa.sobrenome', $sobrenome);
+        $this->db->where('pessoa.data_nasc', $data_nasc);
+        $this->db->where('pessoa.email', $email);
+        $this->db->where('pessoa.cpf', $cpf);
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    
     public function getEnderecos() {
         $this->db->select('endereco.id_endereco');
         $this->db->select('endereco.id_estado');
@@ -158,6 +182,28 @@ class Query extends CI_Model {
         $this->db->select('endereco.cep');
         $this->db->from('endereco');
         $this->db->where('endereco.id_endereco', $id_endereco);
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    
+    public function getEnderecoPessoa($id_estado, $rua, $numero, $complemento, $bairro, $cidade, $cep) {
+        $this->db->select('endereco.id_endereco');
+        $this->db->select('endereco.id_estado');
+        $this->db->select('endereco.rua');
+        $this->db->select('endereco.numero');
+        $this->db->select('endereco.complemento');
+        $this->db->select('endereco.bairro');
+        $this->db->select('endereco.cidade');
+        $this->db->select('endereco.cep');
+        $this->db->from('endereco');
+        $this->db->where('endereco.id_estado', $id_estado);
+        $this->db->where('endereco.rua', $rua);
+        $this->db->where('endereco.numero', $numero);
+        $this->db->where('endereco.complemento', $complemento);
+        $this->db->where('endereco.bairro', $bairro);
+        $this->db->where('endereco.cidade', $cidade);
+        $this->db->where('endereco.cep', $cep);
         $query = $this->db->get();
         
         return $query->result_array();
@@ -224,6 +270,18 @@ class Query extends CI_Model {
         $this->db->select('login.senha');
         $this->db->from('login');
         $this->db->where('login.id_login', $id_login);
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    
+    public function getLoginPessoa($usuario, $senha) {
+        $this->db->select('login.id_login');
+        $this->db->select('login.usuario');
+        $this->db->select('login.senha');
+        $this->db->from('login');
+        $this->db->where('login.usuario', $usuario);
+        $this->db->where('login.senha', $senha);
         $query = $this->db->get();
         
         return $query->result_array();

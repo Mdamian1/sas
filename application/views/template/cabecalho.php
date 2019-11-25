@@ -6,6 +6,7 @@
     <title><?php echo $title; ?></title>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/login.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/newUser.css'); ?>">
     <?php if ($this->session->perfil == '1'): ?>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/dash.css'); ?>">
     <?php endif; ?>
@@ -26,7 +27,7 @@
                     <a class="nav-link" href="<?php echo base_url('admin/users') ?>">USUÁRIOS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url('admin/new') ?>">CADASTRAR USUÁRIO</a>
+                    <a class="nav-link" href="<?php echo base_url('admin/novo') ?>">CADASTRAR USUÁRIO</a>
                 </li>
                 <?php endif; ?>
                 <li class="nav-item">

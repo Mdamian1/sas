@@ -13,7 +13,7 @@ class Client extends CI_Controller {
         if (!isset($this->session->id_usuario) || $this->session->perfil != '2') {
             session_destroy();
             
-            redirect('login/login');
+            redirect('login/entrar');
         }
         
         $this->load->model('Query', 'query');

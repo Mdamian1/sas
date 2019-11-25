@@ -13,7 +13,7 @@ class Employee extends CI_Controller {
         if (!isset($this->session->id_usuario) || $this->session->perfil != '3') {
             session_destroy();
             
-            redirect('login/login');
+            redirect('login/entrar');
         }
         
         $this->load->model('Query', 'query');

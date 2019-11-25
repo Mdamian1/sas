@@ -13,7 +13,7 @@ class Login extends CI_Controller {
         return $systemName;
     }
     
-    public function login() {
+    public function entrar() {
         $dados['title'] = $this->systemName().' | Login';
         
 		$this->load->view('template/cabecalho-login', $dados);
@@ -69,7 +69,7 @@ class Login extends CI_Controller {
     public function sair(){
 		$this->session->sess_destroy();
 
-		redirect('login/login');
+		redirect('login/entrar');
 	}
     
 }
