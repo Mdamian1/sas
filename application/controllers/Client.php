@@ -40,4 +40,17 @@ class Client extends CI_Controller {
         $this->load->view('template/rodape');
     }
     
+    public function cadastrarAgendamento() {
+        $id_pessoa = $this->session->id_usuario;
+        $id_horario = $this->input->post('horario');
+        $data_agendada = $this->input->post('data-agendada');
+        $descricao = $this->input->post('descricao');
+        
+        if ( $this->query->setAgendamento($id_horario, $id_pessoa, $data_agendada, $descricao) ) {
+            echo json_encode(true);
+        } else {
+            echo json_encode(false);
+        }
+    }
+    
 }

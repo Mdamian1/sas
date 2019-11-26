@@ -33,6 +33,11 @@
                     <a class="nav-link" href="<?php echo base_url('admin/novo') ?>">CADASTRAR USUÁRIO</a>
                 </li>
                 <?php endif; ?>
+                <?php if ($this->session->perfil == '2'): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('client') ?>">INICIO</a>
+                </li>
+                <?php endif; ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url('login/sair') ?>">SAIR</a>
                 </li>
