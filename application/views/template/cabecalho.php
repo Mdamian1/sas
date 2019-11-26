@@ -10,6 +10,9 @@
     <?php if ($this->session->perfil == '1'): ?>
     <link rel="stylesheet" href="<?php echo base_url('assets/css/dash.css'); ?>">
     <?php endif; ?>
+    <?php if ($this->session->perfil == '2'): ?>
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/client-dash.css'); ?>">
+    <?php endif; ?>
 </head>
 
 <body>

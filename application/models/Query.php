@@ -106,10 +106,11 @@ class Query extends CI_Model {
         }
     }
     
-    public function setAgendamento($id_horario, $id_pessoa, $descricao) {
+    public function setAgendamento($id_horario, $id_pessoa, $data_agendada, $descricao) {
         $data = array(
             'id_horario' => $id_horario,
             'id_pessoa' => $id_pessoa,
+            'data_agendada' => $data_agendada,
             'descricao' => $descricao
         );
 
@@ -342,6 +343,7 @@ class Query extends CI_Model {
         $this->db->select('agendamento.id_agendamento');
         $this->db->select('agendamento.id_horario');
         $this->db->select('agendamento.id_pessoa');
+        $this->db->select('agendamento.data_agendada');
         $this->db->select('agendamento.descricao');
         $this->db->from('agendamento');
         $this->db->where('agendamento.id_agendamento > 0');
@@ -354,6 +356,7 @@ class Query extends CI_Model {
         $this->db->select('agendamento.id_agendamento');
         $this->db->select('agendamento.id_horario');
         $this->db->select('agendamento.id_pessoa');
+        $this->db->select('agendamento.data_agendada');
         $this->db->select('agendamento.descricao');
         $this->db->from('agendamento');
         $this->db->where('agendamento.id_agendamento', $id_agendamento);

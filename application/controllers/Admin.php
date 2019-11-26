@@ -85,7 +85,7 @@ class Admin extends CI_Controller {
         $k = 0;
         if ( $senha == $confirmarSenha ) {
             
-            $senha = sha1($senha);
+            $senha = sha1(trim($senha));
             if ( $this->query->setLogin($usuario, $senha) ) {
                 
                 $k++;

@@ -31,4 +31,13 @@ class Client extends CI_Controller {
         $this->load->view('template/rodape');
     }
     
+    public function agendar() {
+        $dados['title'] = $this->query->systemName().' | HOME';
+        $dados['horarioDisponivel'] = $this->query->getHorarioDisponiveis();
+        
+        $this->load->view('template/cabecalho', $dados);
+        $this->load->view('view/agendar');
+        $this->load->view('template/rodape');
+    }
+    
 }
