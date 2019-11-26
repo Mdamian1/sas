@@ -16,8 +16,8 @@ $(document).ready(function () {
             })
         }
 
-        if ($(".form-check-input").prop("checked")) {
-            console.log($(this).val())
+        for (var i = 0; i < $('input[type=radio]').length; i++) {
+            console.log($(this).i.val())
         }
     }
 })
