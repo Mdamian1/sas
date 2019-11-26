@@ -53,4 +53,20 @@ class Client extends CI_Controller {
         }
     }
     
+    public function buscarDia() {
+        $data = $this->input->post('data-agendada');
+        
+        $existe = ( $this->query->burcarDia($data) = true )?404:200;
+        
+        if ( $existe == 200 ) {
+            $horarioDisponiveis = $this->query->getHorarioDisponiveis();
+            
+            foreach($horarioDisponiveis as $horario):
+            $diaHorario = $this->query->setDiaHorario();
+            endforeach;
+        }
+        
+        echo json_encode($existe);
+    }
+    
 }

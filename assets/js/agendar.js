@@ -1,5 +1,18 @@
 $(document).ready(function () {
     $('#btn-agendar').click(verificarCampos);
+    
+    $('#data-agendada').change(verificarHorario);
+    
+    function verificarHorario() {
+        $.ajax({
+            url: "buscarDia",
+            type: "POST",
+            data: $('#form-cadastro-agendamento').serialize(),
+            dataType: "json"
+        }).done(function (result) {
+            console.log(result)
+        })
+    }
 
     function verificarCampos(e) {
         e.preventDefault();
