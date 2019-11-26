@@ -1,0 +1,13 @@
+salvar em datetime
+mudar para chave-primaria-composta - unique
+
+Primeiro mostrar apenas data
+Quando usuario selecionar data
+Fazer GET para ver se já existem registros no banco no dia (independe de id_pessoa)
+Se sim mostra os horários disponíveis sem id_pessoa e os que tiverem id_pessoa mostra desabilitado
+Se não então faz um set com todos os horários disponiveis no dia selecionado
+Depois faz um get desses horarios no dia
+e mostra para o cliente
+quando selecionar e preencher o form, tenta fazer insert
+caso ocorra erro de unique é pq já existe id_pessoa nesse dia e horario
+caso não ocorra erro então faz o insert
