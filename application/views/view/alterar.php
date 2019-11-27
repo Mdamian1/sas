@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="user-telefone">Celular</label>
-                        <input type="text" class="form-control" id="user-telefone" placeholder="Celular" value="<?php echo $telefone[0]['numero'] ?>">
+                        <input type="text" class="form-control" id="user-telefone" placeholder="Celular" value="<?php echo $user[0]['telefone'] ?>">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="user-email">E-mail</label>

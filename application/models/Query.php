@@ -6,7 +6,7 @@ class Query extends CI_Model {
 /* -------Insert-------- */
 /* --------------------- */
 
-    public function setPessoa($id_perfil, $id_endereco, $id_login, $nome, $sobrenome, $data_nasc, $email, $cpf) {
+    public function setPessoa($id_perfil, $id_endereco, $id_login, $nome, $sobrenome, $data_nasc, $email, $cpf, $telefone) {
         $data = array(
             'id_perfil' => $id_perfil,
             'id_endereco' => $id_endereco,
@@ -15,7 +15,8 @@ class Query extends CI_Model {
             'sobrenome' => $sobrenome,
             'data_nasc' => $data_nasc,
             'email' => $email,
-            'cpf' => $cpf
+            'cpf' => $cpf,
+            'telefone' => $telefone
         );
 
         if ( $this->db->insert('pessoa', $data) ) {
@@ -37,19 +38,6 @@ class Query extends CI_Model {
         );
 
         if ( $this->db->insert('endereco', $data) ) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    public function setTelefone($id_pessoa, $numero) {
-        $data = array(
-            'id_pessoa' => $id_pessoa,
-            'numero' => $numero
-        );
-
-        if ( $this->db->insert('telefone', $data) ) {
             return true;
         } else {
             return false;
@@ -106,11 +94,10 @@ class Query extends CI_Model {
         }
     }
     
-    public function setAgendamento($id_horario, $id_pessoa, $data_agendada, $descricao) {
+    public function setAgendamento($id_pessoa, $data_horario, $descricao) {
         $data = array(
-            'id_horario' => $id_horario,
             'id_pessoa' => $id_pessoa,
-            'data_agendada' => $data_agendada,
+            'data_horario' => $data_horario,
             'descricao' => $descricao
         );
 
@@ -157,6 +144,7 @@ class Query extends CI_Model {
         $this->db->select('pessoa.data_nasc');
         $this->db->select('pessoa.email');
         $this->db->select('pessoa.cpf');
+        $this->db->select('pessoa.telefone');
         $this->db->from('pessoa');
         $this->db->where('pessoa.id_pessoa', $id_pessoa);
         $query = $this->db->get();
@@ -174,6 +162,7 @@ class Query extends CI_Model {
         $this->db->select('pessoa.data_nasc');
         $this->db->select('pessoa.email');
         $this->db->select('pessoa.cpf');
+        $this->db->select('pessoa.telefone');
         $this->db->from('pessoa');
         $this->db->where('pessoa.id_perfil', $id_perfil);
         $this->db->where('pessoa.id_endereco', $id_endereco);
@@ -264,28 +253,6 @@ class Query extends CI_Model {
         return $query->result_array();
     }
     
-    public function getTelefones() {
-        $this->db->select('telefone.id_telefone');
-        $this->db->select('telefone.id_pessoa');
-        $this->db->select('telefone.numero');
-        $this->db->from('telefone');
-        $this->db->where('telefone.id_telefone > 0');
-        $query = $this->db->get();
-        
-        return $query->result_array();
-    }
-    
-    public function getTelefone($id_pessoa) {
-        $this->db->select('telefone.id_telefone');
-        $this->db->select('telefone.id_pessoa');
-        $this->db->select('telefone.numero');
-        $this->db->from('telefone');
-        $this->db->where('telefone.id_pessoa', $id_pessoa);
-        $query = $this->db->get();
-        
-        return $query->result_array();
-    }
-    
     public function getLogins() {
         $this->db->select('login.id_login');
         $this->db->select('login.usuario');
@@ -340,10 +307,8 @@ class Query extends CI_Model {
     }
     
     public function getAgendamentos() {
-        $this->db->select('agendamento.id_agendamento');
-        $this->db->select('agendamento.id_horario');
         $this->db->select('agendamento.id_pessoa');
-        $this->db->select('agendamento.data_agendada');
+        $this->db->select('agendamento.data_horario');
         $this->db->select('agendamento.descricao');
         $this->db->from('agendamento');
         $this->db->where('agendamento.id_agendamento > 0');
@@ -354,12 +319,39 @@ class Query extends CI_Model {
     
     public function getAgendamento($id_agendamento) {
         $this->db->select('agendamento.id_agendamento');
-        $this->db->select('agendamento.id_horario');
         $this->db->select('agendamento.id_pessoa');
-        $this->db->select('agendamento.data_agendada');
+        $this->db->select('agendamento.data_horario');
         $this->db->select('agendamento.descricao');
         $this->db->from('agendamento');
         $this->db->where('agendamento.id_agendamento', $id_agendamento);
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    
+    public function getAgendamentoData($data) {
+        $this->db->select('agendamento.id_agendamento');
+        $this->db->select('agendamento.id_pessoa');
+        $this->db->select('agendamento.data_horario');
+        $this->db->select('agendamento.descricao');
+        $this->db->from('agendamento');
+        $this->db->like('agendamento.data_horario', $data);
+        $query = $this->db->get();
+        
+        if($query->num_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+    }
+    
+    public function getAgendamentoDataResult($data) {
+        $this->db->select('agendamento.id_agendamento');
+        $this->db->select('agendamento.id_pessoa');
+        $this->db->select('agendamento.data_horario');
+        $this->db->select('agendamento.descricao');
+        $this->db->from('agendamento');
+        $this->db->like('agendamento.data_horario', $data);
         $query = $this->db->get();
         
         return $query->result_array();
@@ -422,7 +414,7 @@ class Query extends CI_Model {
 /* ---------Put--------- */
 /* --------------------- */
 
-    public function putPessoa($id_pessoa, $id_perfil, $id_endereco, $id_login, $nome, $sobrenome, $data_nasc, $email, $cpf) {
+    public function putPessoa($id_pessoa, $id_perfil, $id_endereco, $id_login, $nome, $sobrenome, $data_nasc, $email, $cpf, $telefone) {
         $data = array(
             'pessoa.id_perfil' => $id_perfil,
             'pessoa.id_endereco' => $id_endereco,
@@ -431,7 +423,8 @@ class Query extends CI_Model {
             'pessoa.sobrenome' => $sobrenome,
             'pessoa.data_nasc' => $data_nasc,
             'pessoa.email' => $email,
-            'pessoa.cpf' => $cpf
+            'pessoa.cpf' => $cpf,
+            'pessoa.telefone' => $telefone
         );
         
         $this->db->where('pessoa.id_pessoa', $id_pessoa);
@@ -497,16 +490,18 @@ class Query extends CI_Model {
         $this->db->update('perfil', $data);
     }
     
-    public function putAgendamento($id_agendamento, $id_horario) {
+    public function putAgendamento($id_agendamento, $id_pessoa, $descricao) {
         $data = array(
-            'agendamento.id_agendamento' => $id_agendamento,
-            'agendamento.id_horario' => $id_horario,
             'agendamento.id_pessoa' => $id_pessoa,
             'agendamento.descricao' => $descricao
         );
         
         $this->db->where('agendamento.id_agendamento', $id_agendamento);
-        $this->db->update('agendamento', $data);
+        if ( $this->db->update('agendamento', $data) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function putHorarioAgendamento($id_horario, $horario) {

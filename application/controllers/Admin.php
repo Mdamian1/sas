@@ -47,7 +47,6 @@ class Admin extends CI_Controller {
         $dados['endereco'] = $this->query->getEndereco($dados['user'][0]['id_endereco']);
         $dados['estado'] = $this->query->getEstado($dados['endereco'][0]['id_estado']);
         $dados['login'] = $this->query->getLogin($dados['user'][0]['id_login']);
-        $dados['telefone'] = $this->query->getTelefone($dados['user'][0]['id_pessoa']);
         
         $this->load->view('template/cabecalho', $dados);
         $this->load->view('view/user');
@@ -102,19 +101,13 @@ class Admin extends CI_Controller {
                         
                         $k++;
                         
-                        $pessoa = $this->query->getPessoaCadastro($id_perfil, $endereco[0]['id_endereco'], $login[0]['id_login'], $nome, $sobrenome, $dataNasc, $email, $cpf);
-
-                        if ( $this->query->setTelefone($pessoa[0]['id_pessoa'], $celular) ) {
-                        
-                            $k++;
-                        
-                        }
+                        $pessoa = $this->query->getPessoaCadastro($id_perfil, $endereco[0]['id_endereco'], $login[0]['id_login'], $nome, $sobrenome, $dataNasc, $email, $cpf, $celular);
                     }
                 }
             }
         }
         
-        if ( $k == 4 ) {
+        if ( $k == 3 ) {
             echo json_encode('Pessoa cadastrada com sucesso');
         } else {
             echo json_encode('Falha ao cadastrar pessoa');
@@ -137,7 +130,6 @@ class Admin extends CI_Controller {
         $dados['estados'] = $this->query->getEstados();
         $dados['perfis'] = $this->query->getPerfis();
         $dados['login'] = $this->query->getLogin($id_pessoa);
-        $dados['telefone'] = $this->query->getTelefone($dados['user'][0]['id_pessoa']);
         
         $this->load->view('template/cabecalho', $dados);
         $this->load->view('view/alterar');

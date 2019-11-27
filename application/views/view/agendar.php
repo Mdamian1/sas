@@ -14,14 +14,9 @@
                             </div>
                             <div class="form-group col-md-6 d-flex flex-column justify-content-center align-items-center">
                                 <label>Selecione um horário</label>
-                                <?php foreach($horarioDisponivel as $horario): ?>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="horario" id="<?php echo $horario['id_horario'] ?>" value="<?php echo $horario['id_horario'] ?>">
-                                    <label class="form-check-label" for="<?php echo $horario['id_horario'] ?>">
-                                        <?php echo $horario['horario'] ?>
-                                    </label>
+                                <div id="lista-hora">
+                                    
                                 </div>
-                                <?php endforeach; ?>
                             </div>
                         </div>
                         <div id="alert-agendamento" class="alert alert-danger" role="alert">

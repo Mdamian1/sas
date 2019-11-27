@@ -41,12 +41,11 @@ class Client extends CI_Controller {
     }
     
     public function cadastrarAgendamento() {
+        $id_agendamento = $this->input->post('horario');
         $id_pessoa = $this->session->id_usuario;
-        $id_horario = $this->input->post('horario');
-        $data_agendada = $this->input->post('data-agendada');
         $descricao = $this->input->post('descricao');
         
-        if ( $this->query->setAgendamento($id_horario, $id_pessoa, $data_agendada, $descricao) ) {
+        if ( $this->query->putAgendamento($id_agendamento, $id_pessoa, $descricao) ) {
             echo json_encode(true);
         } else {
             echo json_encode(false);
@@ -56,17 +55,23 @@ class Client extends CI_Controller {
     public function buscarDia() {
         $data = $this->input->post('data-agendada');
         
-        $existe = ( $this->query->burcarDia($data) = true )?404:200;
+        $existe = ( $this->query->getAgendamentoData($data) == true )?404:200;
         
         if ( $existe == 200 ) {
             $horarioDisponiveis = $this->query->getHorarioDisponiveis();
-            
+            $id_pessoa = null;
+            $descricao = null;
             foreach($horarioDisponiveis as $horario):
-            $diaHorario = $this->query->setDiaHorario();
+            $dataHora = $data.' '.$horario['horario'];
+            $diaHorario = $this->query->setAgendamento($id_pessoa, $dataHora, $descricao);
             endforeach;
+            $retorno = $this->query->getAgendamentoDataResult($data);
+            echo json_encode($retorno);
+        } else {
+            $retorno = $this->query->getAgendamentoDataResult($data);
+            echo json_encode($retorno);
+            
         }
-        
-        echo json_encode($existe);
     }
     
 }

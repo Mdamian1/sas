@@ -5,7 +5,7 @@
                 <li class="list-group-item active bg-dark"><strong>Nome:</strong> <?php echo $user[0]['nome'].' '.$user[0]['sobrenome'] ?></li>
                 <li class="list-group-item"><strong>Perfil:</strong> <?php echo $perfil[0]['descricao'] ?></li>
                 <li class="list-group-item"><strong>Usuário:</strong> <?php echo $login[0]['usuario'] ?></li>
-                <li class="list-group-item"><strong>Telefone:</strong> <?php echo $telefone[0]['numero'] ?></li>
+                <li class="list-group-item"><strong>Telefone:</strong> <?php echo $user[0]['telefone'] ?></li>
                 <li class="list-group-item"><strong>E-mail:</strong> <?php echo $user[0]['email'] ?></li>
                 <li class="list-group-item"><strong>CPF:</strong> <?php echo $user[0]['cpf'] ?></li>
                 <li class="list-group-item"><strong>Data de nascimento:</strong> <?php echo strftime("%d/%m/%Y", strtotime($user[0]['data_nasc'])) ?></li>
