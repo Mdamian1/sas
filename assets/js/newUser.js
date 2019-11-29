@@ -1,10 +1,7 @@
 $(document).ready(function () {
 
     var camposCadastro = ['#user-nome', '#user-sobrenome', '#user-telefone', '#user-cpf', '#user-rua', '#user-numero', '#user-complemento', '#user-bairro', '#user-cep', '#user-cidade', '#user-usuario', '#user-senha', '#user-conf-senha'],
-        k = 0,
-        sEmail = $("#user-email").val(),
-        emailFilter = /^.+@.+\..{2,}$/,
-        illegalChars = /[\(\)\<\>\,\;\:\\\/\"\[\]]/
+        k = 0;
 
     $('#btn-cadastrar').click(verificarCadastro);
 
@@ -97,19 +94,22 @@ $(document).ready(function () {
             }
         }
 
-        if (!(emailFilter.test(sEmail)) || sEmail.match(illegalChars)) {
-            $('#alert-user-email').css({
-                'display': 'block'
-            });
-            $('#user-email').css({
-                'border': '1px solid #ff0000'
-            });
-        } else {
+        var email = $("#user-email").val();
+
+        var emailRegExp = /^(([^<;>;()[\]\\.,;:\s@\"]+(\.[^<;>;()[\]\\.,;:\s@\"]+)*)|(\".+\"))@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+        if (emailRegExp.test(email)) {
             $('#alert-user-email').css({
                 'display': 'none'
             });
             $('#user-email').css({
                 'border': '1px solid #ced4da'
+            });
+        } else {
+            $('#alert-user-email').css({
+                'display': 'block'
+            });
+            $('#user-email').css({
+                'border': '1px solid #ff0000'
             });
         }
 
@@ -122,8 +122,9 @@ $(document).ready(function () {
             data: $('#form-new-user').serialize(),
             dataType: "json"
         }).done(function (result) {
-            console.log(result);
-
+            if (result == "Pessoa cadastrada com sucesso") {
+                window.location.href = "http://localhost/sas/admin/users";
+            }
         })
     }
 

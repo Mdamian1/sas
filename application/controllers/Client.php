@@ -32,7 +32,7 @@ class Client extends CI_Controller {
     }
     
     public function agendar() {
-        $dados['title'] = $this->query->systemName().' | HOME';
+        $dados['title'] = $this->query->systemName().' | AGENDAR';
         $dados['horarioDisponivel'] = $this->query->getHorarioDisponiveis();
         
         $this->load->view('template/cabecalho', $dados);
@@ -72,6 +72,15 @@ class Client extends CI_Controller {
             echo json_encode($retorno);
             
         }
+    }
+    
+    public function agendamentos($id_pessoa) {
+        $dados['title'] = $this->query->systemName().' | AGENDAMENTOS';
+        $dados['agendamentos'] = $this->query->getAgendamentosPessoa($id_pessoa);
+        
+        $this->load->view('template/cabecalho', $dados);
+        $this->load->view('view/agendamentos');
+        $this->load->view('template/rodape');
     }
     
 }

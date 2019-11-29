@@ -25,7 +25,7 @@ class Login extends CI_Controller {
         $user = $this->input->post('user');
         $senha = $this->input->post('senha');
         
-        $loginExistente = $this->query->verificaLogin($user, sha1($senha));
+        $loginExistente = $this->query->verificaLogin($user, md5($senha));
         
         if($loginExistente['usuario'] === $user){
 

@@ -59,7 +59,7 @@ class Query extends CI_Model {
     public function setLogin($usuario, $senha) {
         $data = array(
             'usuario' => $usuario,
-            'senha' => sha1($senha)
+            'senha' => $senha
         );
 
         if ( $this->db->insert('login', $data) ) {
@@ -324,6 +324,18 @@ class Query extends CI_Model {
         $this->db->select('agendamento.descricao');
         $this->db->from('agendamento');
         $this->db->where('agendamento.id_agendamento', $id_agendamento);
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    
+    public function getAgendamentosPessoa($id_pessoa) {
+        $this->db->select('agendamento.id_agendamento');
+        $this->db->select('agendamento.id_pessoa');
+        $this->db->select('agendamento.data_horario');
+        $this->db->select('agendamento.descricao');
+        $this->db->from('agendamento');
+        $this->db->where('agendamento.id_pessoa', $id_pessoa);
         $query = $this->db->get();
         
         return $query->result_array();

@@ -82,10 +82,10 @@ class Admin extends CI_Controller {
         $confirmarSenha = $this->input->post('confirmar-senha');
         $id_perfil = $this->input->post('perfil');
         $k = 0;
+        
         if ( $senha == $confirmarSenha ) {
             
-            $senha = sha1(trim($senha));
-            if ( $this->query->setLogin($usuario, $senha) ) {
+            if ( $this->query->setLogin($usuario, md5($senha)) ) {
                 
                 $k++;
                 
@@ -97,7 +97,7 @@ class Admin extends CI_Controller {
                     
                     $endereco = $this->query->getEnderecoPessoa($id_estado, $rua, $numero, $complemento, $bairro, $cidade, $cep);
 
-                    if ( $this->query->setPessoa($id_perfil, $endereco[0]['id_endereco'], $login[0]['id_login'], $nome, $sobrenome, $dataNasc, $email, $cpf) ) {
+                    if ( $this->query->setPessoa($id_perfil, $endereco[0]['id_endereco'], $login[0]['id_login'], $nome, $sobrenome, $dataNasc, $email, $cpf, $celular) ) {
                         
                         $k++;
                         

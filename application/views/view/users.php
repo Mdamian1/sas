@@ -4,7 +4,7 @@
             <ul>
                 <?php foreach($users as $user): ?>
                 <a class="users-link" href="user/<?php echo $user['id_pessoa'] ?>">
-                    <div class="users-item">
+                    <div class="users-item mt-4">
                         <?php
                         for($i=0; $i<count($perfil);$i++) {
                             if ($perfil[$i]['id_perfil'] == $user['id_perfil']) {
