@@ -136,4 +136,20 @@ class Admin extends CI_Controller {
         $this->load->view('template/rodape');
     }
     
+    public function agendamentos() {
+        $dados['title'] = $this->query->systemName().' | AGENDAMENTOS';
+        
+        $this->load->view('template/cabecalho', $dados);
+        $this->load->view('view/admin-agendamentos');
+        $this->load->view('template/rodape');
+    }
+    
+    public function getAgendamentos() {
+        $data = $this->input->post('data');
+        
+        $agendamentos = $this->query->getAgendamentoDataPessoa($data);
+        
+        echo json_encode($agendamentos);
+    }
+    
 }

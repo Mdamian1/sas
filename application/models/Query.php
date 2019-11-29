@@ -369,6 +369,22 @@ class Query extends CI_Model {
         return $query->result_array();
     }
     
+    public function getAgendamentoDataPessoa($data) {
+        $this->db->select('agendamento.id_agendamento');
+        $this->db->select('agendamento.id_pessoa');
+        $this->db->select('agendamento.data_horario');
+        $this->db->select('agendamento.descricao');
+        $this->db->select('pessoa.nome as cliente');
+        $this->db->from('agendamento');
+        $this->db->join('pessoa', 'pessoa.id_pessoa = agendamento.id_pessoa', 'inner');
+        $this->db->like('agendamento.data_horario', $data);
+        $this->db->order_by('agendamento.data_horario');
+//        $this->db->where('agendamento.id_pessoa != null');
+        $query = $this->db->get();
+        
+        return $query->result_array();
+    }
+    
     public function getHorarioDisponiveis() {
         $this->db->select('horario_disponivel.id_horario');
         $this->db->select('horario_disponivel.horario');

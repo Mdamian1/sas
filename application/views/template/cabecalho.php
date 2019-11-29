@@ -32,6 +32,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo base_url('admin/novo') ?>">CADASTRAR USUÁRIO</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo base_url('admin/agendamentos') ?>">VER AGENDAMENTOS</a>
+                </li>
                 <?php endif; ?>
                 <?php if ($this->session->perfil == '2'): ?>
                 <li class="nav-item">
