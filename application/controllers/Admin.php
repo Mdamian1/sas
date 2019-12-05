@@ -136,6 +136,46 @@ class Admin extends CI_Controller {
         $this->load->view('template/rodape');
     }
     
+    public function alteraUser() {
+        $id_pessoa = $this->input->post('id_pessoa');
+        $nome = $this->input->post('nome');
+        $sobrenome = $this->input->post('sobrenome');
+        $data_nasc = $this->input->post('data_nasc');
+        $telefone = $this->input->post('telefone');
+        $email = $this->input->post('email');
+        $cpf = $this->input->post('cpf');
+        $id_endereco = $this->input->post('id_endereco');
+        $rua = $this->input->post('rua');
+        $numero = $this->input->post('numero');
+        $complemento = $this->input->post('complemento');
+        $bairro = $this->input->post('bairro');
+        $cep = $this->input->post('cep');
+        $cidade = $this->input->post('cidade');
+        $id_estado = $this->input->post('id_estado');
+        
+        if ($this->query->putEndereco($id_endereco, $id_estado, $rua, $numero, $complemento, $bairro, $cidade, $cep)){
+            $retorno = array(
+                'putEndereco' => true
+            );
+        } else {
+            $retorno = array(
+                'putEndereco' => false
+            );
+        }
+        
+        if ($this->query->putPessoa($id_pessoa, $id_endereco, $nome, $sobrenome, $data_nasc, $email, $cpf, $telefone)){
+            $retorno += array(
+                'putPessoa' => true
+            );
+        } else {
+            $retorno += array(
+                'putPessoa' => false
+            );
+        }
+        
+        echo json_encode($retorno);
+    }
+    
     public function agendamentos() {
         $dados['title'] = $this->query->systemName().' | AGENDAMENTOS';
         

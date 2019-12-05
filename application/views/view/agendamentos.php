@@ -15,8 +15,7 @@
                 <h6 class="card-subtitle mb-2 text-muted">Horário: <?php echo $hora ?></h6>
                 <h6 class="card-subtitle mb-2 text-muted">Data: <?php echo $data ?></h6>
                 <p class="card-text"><?php echo $agendamento['descricao'] ?></p>
-                <a href="<?php echo base_url('Client/alterar/'.$agendamento['id_agendamento']) ?>" class="card-link">Alterar</a>
-                <a href="<?php echo base_url('Client/excluir/'.$agendamento['id_agendamento']) ?>" class="card-link">Excluir</a>
+                <a href="<?php echo base_url('Client/cancelar/'.$agendamento['id_agendamento']) ?>" class="card-link">Cancelar</a>
             </div>
         </div>
         <?php endforeach; ?>

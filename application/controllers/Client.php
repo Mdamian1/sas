@@ -83,4 +83,15 @@ class Client extends CI_Controller {
         $this->load->view('template/rodape');
     }
     
+    public function cancelar($id_agendamento) {
+        $id_pessoa = null;
+        $descricao = null;
+        
+        if ( $this->query->putAgendamento($id_agendamento, $id_pessoa, $descricao) ) {
+            redirect(base_url('client/agendamentos/'.$this->session->id_usuario));
+        } else {
+            redirect(base_url('client/agendamentos/'.$this->session->id_usuario));
+        }
+    }
+    
 }

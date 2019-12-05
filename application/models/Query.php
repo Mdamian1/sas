@@ -442,11 +442,9 @@ class Query extends CI_Model {
 /* ---------Put--------- */
 /* --------------------- */
 
-    public function putPessoa($id_pessoa, $id_perfil, $id_endereco, $id_login, $nome, $sobrenome, $data_nasc, $email, $cpf, $telefone) {
+    public function putPessoa($id_pessoa, $id_endereco, $nome, $sobrenome, $data_nasc, $email, $cpf, $telefone) {
         $data = array(
-            'pessoa.id_perfil' => $id_perfil,
             'pessoa.id_endereco' => $id_endereco,
-            'pessoa.id_login' => $id_login,
             'pessoa.nome' => $nome,
             'pessoa.sobrenome' => $sobrenome,
             'pessoa.data_nasc' => $data_nasc,
@@ -456,7 +454,11 @@ class Query extends CI_Model {
         );
         
         $this->db->where('pessoa.id_pessoa', $id_pessoa);
-        $this->db->update('pessoa', $data);
+        if ($this->db->update('pessoa', $data)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function putLogin($id_login, $usuario, $senha) {
@@ -467,7 +469,12 @@ class Query extends CI_Model {
         );
         
         $this->db->where('login.id_login', $id_login);
-        $this->db->update('login', $data);
+        
+        if ($this->db->update('login', $data)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function putEndereco($id_endereco, $id_estado, $rua, $numero, $complemento, $bairro, $cidade, $cep) {
@@ -483,7 +490,12 @@ class Query extends CI_Model {
         );
         
         $this->db->where('endereco.id_endereco', $id_endereco);
-        $this->db->update('endereco', $data);
+        
+        if ($this->db->update('endereco', $data)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function putEstado($id_estado, $nome, $sigla) {
@@ -494,7 +506,12 @@ class Query extends CI_Model {
         );
         
         $this->db->where('estado.id_estado', $id_estado);
-        $this->db->update('estado', $data);
+        
+        if ($this->db->update('estado', $data)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function putTelefone($id_telefone, $id_pessoa, $numero) {
@@ -505,7 +522,12 @@ class Query extends CI_Model {
         );
         
         $this->db->where('telefone.id_telefone', $id_telefone);
-        $this->db->update('telefone', $data);
+        
+        if ($this->db->update('telefone', $data)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function putPerfil($id_perfil, $descricao) {
@@ -515,7 +537,12 @@ class Query extends CI_Model {
         );
         
         $this->db->where('perfil.id_perfil', $id_perfil);
-        $this->db->update('perfil', $data);
+        
+        if ($this->db->update('perfil', $data)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function putAgendamento($id_agendamento, $id_pessoa, $descricao) {
@@ -539,7 +566,12 @@ class Query extends CI_Model {
         );
         
         $this->db->where('horario.id_horario', $id_horario);
-        $this->db->update('horario', $data);
+        
+        if ($this->db->update('horario', $data)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
 /* --------------------- */
